@@ -39,7 +39,7 @@ from HasiiMusic.utils.stream.stream import stream
             "vplayforce",
             "cplayforce",
             "cvplayforce",
-        ], ,prefixes=["/", "!", "%", ",", "", ".", "@", "#"]
+        ], prefixes=["/", "!", "%", ",", "", ".", "@", "#"]
     )
     & filters.group
     & ~BANNED_USERS
