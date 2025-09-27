@@ -8,11 +8,7 @@ assistants = []
 assistantids = []
 
 GROUPS_TO_JOIN = [
-    "CertifiedDiscussion",
-    "CertifiedCoders",
-    "CertifiedCodes",
-    "CertifiedDevs",
-    "CertifiedNetwork",
+    "muoimuoimusicbot",
 ]
 
 
@@ -78,7 +74,7 @@ class Userbot:
 
             try:
                 await client.send_message(
-                    config.LOGGER_ID, f"Hasii's Assistant {index} Started"
+                    config.LOGGER_ID, f"Muội {index} đã khởi động"
                 )
             except Exception:
                 LOGGER(__name__).error(
