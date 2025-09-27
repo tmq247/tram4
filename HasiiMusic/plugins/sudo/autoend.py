@@ -15,10 +15,9 @@ async def auto_end_stream(_, message: Message):
     if state == "enable":
         await autoend_on()
         await message.reply_text(
-            "» ᴀᴜᴛᴏ ᴇɴᴅ sᴛʀᴇᴀᴍ ᴇɴᴀʙʟᴇᴅ.\n\nᴀssɪsᴛᴀɴᴛ ᴡɪʟʟ ᴀᴜᴛᴏᴍᴀᴛɪᴄᴀʟʟʏ ʟᴇᴀᴠᴇ ᴛʜᴇ ᴠɪᴅᴇᴏᴄʜᴀᴛ ᴀғᴛᴇʀ ғᴇᴡ ᴍɪɴs ᴡʜᴇɴ ɴᴏ ᴏɴᴇ ɪs ʟɪsᴛᴇɴɪɴɢ."
-        )
+            "» Tự động kết thúc phát đã bật.\n\nTrợ lý sẽ tự động rời khỏi video chat sau vài phút khi không có ai nghe.")
     elif state == "disable":
         await autoend_off()
-        await message.reply_text("» ᴀᴜᴛᴏ ᴇɴᴅ sᴛʀᴇᴀᴍ ᴅɪsᴀʙʟᴇᴅ.")
+        await message.reply_text("» Tự động kết thúc phát đã tắt.")
     else:
         await message.reply_text(usage)
