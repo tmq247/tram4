@@ -46,13 +46,13 @@ async def join_userbot(app, chat_id, chat_username=None):
             try:
                 await app.unban_chat_member(chat_id, userbot.id)
             except ChatAdminRequired:
-                return "**❌ I need unban permission to add the assistant.**"
+                return "**❌ Tôi cần quyền gỡ cấm để thêm trợ lý.**"
         if member.status in ACTIVE_STATUSES:
-            return "**🤖 Assistant is already in the chat.**"
+            return "**🤖 Trợ lý đã có trong cuộc trò chuyện.**"
     except UserNotParticipant:
         pass
     except PeerIdInvalid:
-        return "**❌ Invalid chat ID.**"
+        return "**❌ ID cuộc trò chuyện không hợp lệ.**"
 
     invite = None
     if chat_username:
@@ -62,22 +62,22 @@ async def join_userbot(app, chat_id, chat_username=None):
             link = await app.create_chat_invite_link(chat_id)
             invite = link.invite_link
         except ChatAdminRequired:
-            return "**❌ I need permission to create invite links or a public @username to add the assistant.**"
+            return "**❌ Tôi cần quyền tạo liên kết mời hoặc một @username công khai để thêm trợ lý.**"
 
     try:
         await userbot.join_chat(invite)
-        return "**✅ Assistant joined successfully.**"
+        return "**✅ Trợ lý đã tham gia thành công.**"
     except UserAlreadyParticipant:
-        return "**🤖 Assistant is already a participant.**"
+        return "**🤖 Trợ lý đã là một thành viên.**"
     except FloodWait as e:
         await asyncio.sleep(e.value)
         try:
             await userbot.join_chat(invite)
-            return "**✅ Assistant joined successfully.**"
+            return "**✅ Trợ lý đã tham gia thành công.**"
         except Exception as ex:
-            return f"**❌ Failed to add assistant after wait:** `{str(ex)}`"
+            return f"**❌ Không thể thêm trợ lý sau khi chờ:** `{str(ex)}`"
     except Exception as e:
-        return f"**❌ Failed to add assistant:** `{str(e)}`"
+        return f"**❌ Không thể thêm trợ lý:** `{str(e)}`"
 
 
 @app.on_chat_join_request()
@@ -101,7 +101,7 @@ async def approve_join_request(client, chat_join_request: ChatJoinRequest):
             except UserAlreadyParticipant:
                 return
         try:
-            await client.send_message(chat_id, "**✅ Assistant has been approved and joined the chat.**")
+            await client.send_message(chat_id, "**✅ Trợ lý đã được chấp thuận và tham gia cuộc trò chuyện.**")
         except ChatWriteForbidden:
             pass
     except ChatAdminRequired:
@@ -120,19 +120,19 @@ async def approve_join_request(client, chat_join_request: ChatJoinRequest):
 )
 async def join_group(app, message):
     chat_id = message.chat.id
-    status_message = await message.reply("**⏳ Please wait, inviting assistant...**")
+    status_message = await message.reply("**⏳ Vui lòng chờ, đang mời trợ lý...**")
 
     try:
         me = await app.get_me()
         chat_member = await app.get_chat_member(chat_id, me.id)
         if chat_member.status != ChatMemberStatus.ADMINISTRATOR:
-            await status_message.edit_text("**❌ I need to be admin to invite the assistant.**")
+            await status_message.edit_text("**❌ Tôi cần là quản trị viên để mời trợ lý.**")
             return
     except ChatAdminRequired:
-        await status_message.edit_text("**❌ I don't have permission to check admin status in this chat.**")
+        await status_message.edit_text("**❌ Tôi không có quyền kiểm tra trạng thái quản trị viên trong cuộc trò chuyện này.**")
         return
     except Exception as e:
-        await status_message.edit_text(f"**❌ Failed to verify permissions:** `{str(e)}`")
+        await status_message.edit_text(f"**❌ Không thể xác minh quyền:** `{str(e)}`")
         return
 
     chat_username = message.chat.username or None
@@ -156,39 +156,39 @@ async def leave_one(app, message):
         try:
             member = await userbot.get_chat_member(chat_id, userbot.id)
         except UserNotParticipant:
-            await message.reply("**🤖 Assistant is not currently in this chat.**")
+            await message.reply("**🤖 Trợ lý hiện không có trong cuộc trò chuyện này.**")
             return
 
         if member.status in [ChatMemberStatus.LEFT, ChatMemberStatus.BANNED]:
-            await message.reply("**🤖 Assistant is not currently in this chat.**")
+            await message.reply("**🤖 Trợ lý hiện không có trong cuộc trò chuyện này.**")
             return
 
         await userbot.leave_chat(chat_id)
         try:
-            await app.send_message(chat_id, "**✅ Assistant has left this chat.**")
+            await app.send_message(chat_id, "**✅ Trợ lý đã rời cuộc trò chuyện này.**")
         except ChatWriteForbidden:
             pass
     except ChannelPrivate:
-        await message.reply("**❌ Error: This chat is not accessible or has been deleted.**")
+        await message.reply("**❌ Lỗi: Cuộc trò chuyện này không thể truy cập hoặc đã bị xóa.**")
     except UserNotParticipant:
-        await message.reply("**🤖 Assistant is not in this chat.**")
+        await message.reply("**🤖 Trợ lý không có trong cuộc trò chuyện này.**")
     except FloodWait as e:
         await asyncio.sleep(e.value)
-        await message.reply("**✅ Retried after flood wait; try the command again if needed.**")
+        await message.reply("**✅ Đã thử lại sau khi chờ flood; hãy thử lại lệnh nếu cần.**")
     except Exception as e:
-        await message.reply(f"**❌ Failed to remove assistant:** `{str(e)}`")
+        await message.reply(f"**❌ Không thể xóa trợ lý:** `{str(e)}`")
 
 
 @app.on_message(filters.command("leaveall", prefixes=["."]) & dev_filter)
 async def leave_all(app, message):
     left = 0
     failed = 0
-    status_message = await message.reply("🔄 **Assistant is leaving all chats...**")
+    status_message = await message.reply("🔄 **Trợ lý đang rời khỏi tất cả các cuộc trò chuyện...**")
 
     try:
         userbot = await get_assistant(message.chat.id)
         async for dialog in userbot.get_dialogs():
-            if dialog.chat.id == -1002014167331:
+            if dialog.chat.id == -1001816641523:
                 continue
             try:
                 await userbot.leave_chat(dialog.chat.id)
@@ -205,7 +205,7 @@ async def leave_all(app, message):
 
             try:
                 await status_message.edit_text(
-                    f"**Leaving chats...**\n✅ Left: `{left}`\n❌ Failed: `{failed}`"
+                    f"**Đang rời khỏi...**\n✅ Đã rời: `{left}`\n❌ Thất bại: `{failed}`"
                 )
             except ChatWriteForbidden:
                 pass
@@ -216,7 +216,7 @@ async def leave_all(app, message):
         try:
             await app.send_message(
                 message.chat.id,
-                f"**✅ Left from:** `{left}` chats.\n**❌ Failed in:** `{failed}` chats.",
+                f"**✅ Rời khỏi:** `{left}` nhóm.\n**❌ Thất bại tại:** `{failed}` nhóm.",
             )
         except ChatWriteForbidden:
             pass
