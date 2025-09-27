@@ -73,11 +73,11 @@ async def deleteall_command(client, message: Message):
     priv = bot_member.privileges
     if not (priv.can_delete_messages and priv.can_invite_users and priv.can_promote_members):
         return await message.reply_text(
-            "I need to be admin with delete_messages, invite_users & promote_members."
+            "Tôi cần là quản trị viên với quyền xóa_tin_nhắn, mời_thành_viên và thăng_cấp_thành_viên."
         )
 
     await message.reply(
-        f"{message.from_user.mention}, confirm delete all messages?",
+        f"{message.from_user.mention}, xác nhận xóa tất cả tin nhắn?",
         reply_markup=_confirm_kb("deleteall")
     )
 
@@ -90,13 +90,13 @@ async def deleteall_callback(client, callback: CallbackQuery):
 
     ok, _ = await is_owner_or_sudoer(client, chat_id, uid)
     if not ok:
-        return await callback.answer("Only the group owner can confirm.", show_alert=True)
+        return await callback.answer("Chỉ chủ sở hữu nhóm mới có thể xác nhận.", show_alert=True)
 
     if ans == "no":
-        await _safe_edit(callback, "Delete all canceled.")
+        await _safe_edit(callback, "Đã hủy xóa tất cả.")
         return
 
-    await _safe_edit(callback, "⏳ Deleting all messages...")
+    await _safe_edit(callback, "⏳ Đang xóa tất cả tin nhắn...")
 
     assistant = await get_assistant(chat_id)
     ass_me = await assistant.get_me()
@@ -112,11 +112,11 @@ async def deleteall_callback(client, callback: CallbackQuery):
             await assistant.join_chat(link.invite_link)
             await asyncio.sleep(1)
         except ChatAdminRequired:
-            await _safe_edit(callback, "Failed to invite assistant: missing invite permission.")
+            await _safe_edit(callback, "Không thể mời trợ lý: thiếu quyền mời.")
             return
         except Exception as e:
-            log.error("Invite assistant error: %s", e)
-            await _safe_edit(callback, f"Failed to add assistant: {e}")
+            log.error("Lỗi mời trợ lý: %s", e)
+            await _safe_edit(callback, f"Không thể thêm trợ lý: {e}")
             return
 
     try:
@@ -125,11 +125,11 @@ async def deleteall_callback(client, callback: CallbackQuery):
             privileges=ChatPrivileges(can_delete_messages=True)
         )
     except ChatAdminRequired:
-        await _safe_edit(callback, "Failed to promote assistant: missing promote permission.")
+        await _safe_edit(callback, "Không thể thăng cấp trợ lý: thiếu quyền thăng cấp.")
         return
     except Exception as e:
-        log.error("Promote assistant error: %s", e)
-        await _safe_edit(callback, f"Failed to promote assistant: {e}")
+        log.error("Lỗi thăng cấp trợ lý: %s", e)
+        await _safe_edit(callback, f"Không thể thăng cấp trợ lý: {e}")
         return
 
     try:
@@ -138,14 +138,14 @@ async def deleteall_callback(client, callback: CallbackQuery):
         try:
             await client.promote_chat_member(chat_id, ass_id, privileges=ChatPrivileges())
         except Exception as e:
-            log.warning("Assistant demote skipped: %s", e)
+            log.warning("Đã bỏ qua việc hạ cấp trợ lý: %s", e)
         try:
             await assistant.leave_chat(chat_id)
         except Exception:
             pass
         return
     except ChatAdminRequired:
-        await _safe_edit(callback, "⚠️ Cannot clear full history via API (missing admin rights). Falling back to batch deletion...")
+        await _safe_edit(callback, "⚠️ Không thể xóa toàn bộ lịch sử qua API (thiếu quyền quản trị viên). Chuyển sang xóa theo lô...")
     except Exception as e:
         log.error("delete_chat_history failed: %s", e)
 
@@ -154,7 +154,7 @@ async def deleteall_callback(client, callback: CallbackQuery):
 
 async def _fallback_batch_delete(client, assistant, callback: CallbackQuery):
     chat_id = callback.message.chat.id
-    await _safe_edit(callback, "Fallback: batch-deleting messages…")
+    await _safe_edit(callback, "Chuyển sang: đang xóa tin nhắn theo lô…")
     batch, count = [], 0
 
     async for msg in assistant.get_chat_history(chat_id):
