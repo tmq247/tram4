@@ -75,7 +75,7 @@ async def handle_upvote(callback: CallbackQuery, chat_id: int, counter, _):
             stored = confirmer[chat_id][message_id]
             current = db[chat_id][0]
         except Exception:
-            return await callback.edit_message_text("ғᴀɪʟᴇᴅ.")
+            return await callback.edit_message_text("Thất bại.")
         try:
             if current["vidid"] != stored["vidid"] or current["file"] != stored["file"]:
                 return await callback.edit_message_text(_["admin_35"])
@@ -109,12 +109,12 @@ async def unban_assistant(_, callback: CallbackQuery):
     try:
         await app.unban_chat_member(chat_id, userbot.id)
         await callback.answer(
-            "ᴍʏ ᴀssɪsᴛᴀɴᴛ ɪᴅ ᴜɴʙᴀɴɴᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ🥰🥳\n\n➻ ɴᴏᴡ ʏᴏᴜ ᴄᴀɴ ᴘʟᴀʏ sᴏɴɢs🫠🔉\n\nTʜᴀɴᴋ ʏᴏᴜ💗",
+            "ID trợ lý của tôi đã được gỡ cấm thành công🥰🥳\n\n➻ Bây giờ bạn có thể phát nhạc🫠🔉\n\nCảm ơn bạn💗",
             show_alert=True,
         )
     except Exception:
         await callback.answer(
-            "Fᴀɪʟᴇᴅ ᴛᴏ ᴜɴʙᴀɴ ᴍʏ ᴀssɪsᴛᴀɴᴛ ʙᴇᴄᴀᴜsᴇ ɪ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ʙᴀɴ ᴘᴏᴡᴇʀ\n\n➻ Pʟᴇᴀsᴇ ᴘʀᴏᴠɪᴅᴇ ᴍᴇ ʙᴀɴ ᴘᴏᴡᴇʀ sᴏ ᴛʜᴀᴛ ɪ ᴄᴀɴ ᴜɴʙᴀɴ ᴍʏ ᴀssɪsᴛᴀɴᴛ ɪᴅ",
+            "Không thể gỡ cấm trợ lý của tôi vì tôi không có quyền. \n\n➻ Vui lòng cấp cho tôi quyền để tôi có thể gỡ cấm ID trợ lý của mình.",
             show_alert=True,
         )
 
@@ -219,7 +219,7 @@ async def handle_skip_replay(callback: CallbackQuery, _, chat_id: int, command: 
         return await callback.answer(_["queue_2"], show_alert=True)
 
     if command == "Skip":
-        text_msg = f"➻ sᴛʀᴇᴀᴍ sᴋɪᴩᴩᴇᴅ 🎄\n│ \n└ʙʏ : {user_mention} 🥀"
+        text_msg = f"➻ Phát trực tuyến đã bị bỏ qua 🎄\n\n└Bởi : {user_mention} 🥀"
         try:
             popped = playlist.pop(0)
             if popped:
@@ -244,7 +244,7 @@ async def handle_skip_replay(callback: CallbackQuery, _, chat_id: int, command: 
             except Exception:
                 return
     else:
-        text_msg = f"➻ sᴛʀᴇᴀᴍ ʀᴇ-ᴘʟᴀʏᴇᴅ 🎄\n│ \n└ʙʏ : {user_mention} 🥀"
+        text_msg = f"➻ Phát trực tuyến được phát lại 🎄\n\n└Bởi : {user_mention} 🥀"
 
     await callback.answer()
 
@@ -401,8 +401,8 @@ async def handle_seek(callback: CallbackQuery, _, chat_id: int, command: str, us
         if (duration_played - duration_to_skip) <= 10:
             bet = seconds_to_min(duration_played)
             return await callback.answer(
-                f"» ʙᴏᴛ ɪs ᴜɴᴀʙʟᴇ ᴛᴏ sᴇᴇᴋ ʙᴇᴄᴀᴜsᴇ ᴛʜᴇ ᴅᴜʀᴀᴛɪᴏɴ ᴇxᴄᴇᴇᴅs.\n\n"
-                f"ᴄᴜʀʀᴇɴᴛʟʏ ᴩʟᴀʏᴇᴅ :** {bet}** ᴍɪɴᴜᴛᴇs ᴏᴜᴛ ᴏғ **{duration}** ᴍɪɴᴜᴛᴇs.",
+                f"» Bot không thể tua vì thời lượng vượt quá giới hạn.\n\n"
+                f"Đang phát :** {bet}** phút trong tổng số **{duration}** phút.",
                 show_alert=True
             )
         to_seek = duration_played - duration_to_skip + 1
@@ -410,8 +410,8 @@ async def handle_seek(callback: CallbackQuery, _, chat_id: int, command: str, us
         if (duration_seconds - (duration_played + duration_to_skip)) <= 10:
             bet = seconds_to_min(duration_played)
             return await callback.answer(
-                f"» ʙᴏᴛ ɪs ᴜɴᴀʙʟᴇ ᴛᴏ sᴇᴇᴋ ʙᴇᴄᴀᴜsᴇ ᴛʜᴇ ᴅᴜʀᴀᴛɪᴏɴ ᴇxᴄᴇᴇᴅs.\n\n"
-                f"ᴄᴜʀʀᴇɴᴛʟʏ ᴩʟᴀʏᴇᴅ :** {bet}** ᴍɪɴᴜᴛᴇs ᴏᴜᴛ ᴏғ **{duration}** ᴍɪɴᴜᴛᴇs.",
+                f"» Bot không thể tua vì thời lượng vượt quá giới hạn.\n\n"
+                f"Đang phát :** {bet}** phút trong tổng số **{duration}** phút.",
                 show_alert=True
             )
         to_seek = duration_played + duration_to_skip + 1
@@ -437,7 +437,7 @@ async def handle_seek(callback: CallbackQuery, _, chat_id: int, command: str, us
     else:
         db[chat_id][0]["played"] += duration_to_skip
     seek_message = _["admin_25"].format(seconds_to_min(to_seek))
-    await mystic.edit_text(f"{seek_message}\n\nᴄʜᴀɴɢᴇs ᴅᴏɴᴇ ʙʏ : {user_mention} !")
+    await mystic.edit_text(f"{seek_message}\n\nThay đổi được thực hiện bởi : {user_mention} !")
 
 
 async def markup_timer():
@@ -487,7 +487,7 @@ async def close_menu(_, query: CallbackQuery):
     try:
         await query.answer()
         await query.message.delete()
-        msg = await query.message.reply_text(f"✅ ᴄʟᴏꜱᴇᴅ ʙʏ : {query.from_user.mention}")
+        msg = await query.message.reply_text(f"✅ Đóng bởi: {query.from_user.mention}")
         await asyncio.sleep(2)
         await msg.delete()
     except:
