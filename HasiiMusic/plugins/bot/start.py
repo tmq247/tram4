@@ -63,9 +63,9 @@ async def start_pm(client, message: Message, _):
                 await app.send_message(
                     chat_id=config.LOGGER_ID,
                     text=(
-                        f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ ᴛᴏ ᴄʜᴇᴄᴋ <b>sᴜᴅᴏʟɪsᴛ</b>.\n\n"
-                        f"<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n"
-                        f"<b>ᴜsᴇʀɴᴀᴍᴇ :</b> {username}"
+                        f"{message.from_user.mention} vừa khởi động bot để kiểm tra <b>sudo list</b>.\n\n"
+f"<b>ID người dùng :</b> <code>{message.from_user.id}</code>\n"
+f"<b>Tên người dùng :</b> {username}"
                     ),
                 )
             return
@@ -116,9 +116,9 @@ async def start_pm(client, message: Message, _):
                     await app.send_message(
                         chat_id=config.LOGGER_ID,
                         text=(
-                            f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ ᴛᴏ ᴄʜᴇᴄᴋ <b>ᴛʀᴀᴄᴋ ɪɴғᴏʀᴍᴀᴛɪᴏɴ</b>.\n\n"
-                            f"<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n"
-                            f"<b>ᴜsᴇʀɴᴀᴍᴇ :</b> {username}"
+                            f"{message.from_user.mention} vừa khởi động bot để kiểm tra <b>thông tin bài hát</b>.\n\n"
+f"<b>ID người dùng :</b> <code>{message.from_user.id}</code>\n"
+f"<b>Tên người dùng :</b> {username}"
                         ),
                     )
             except Exception as e:
@@ -150,9 +150,9 @@ async def start_pm(client, message: Message, _):
         await app.send_message(
             chat_id=config.LOGGER_ID,
             text=(
-                f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ.\n\n"
-                f"<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>\n"
-                f"<b>ᴜsᴇʀɴᴀᴍᴇ :</b> {username}"
+                f"{message.from_user.mention} vừa khởi động bot.\n\n"
+f"<b>ID người dùng :</b> <code>{message.from_user.id}</code>\n"
+f"<b>Tên người dùng :</b> {username}"
             ),
         )
 
