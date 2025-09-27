@@ -12,15 +12,15 @@ from pyrogram.types import Message
 from pyrogram import Client, filters
 import config
 #from strings import command
-from SANKIXD import app
-from SANKIXD.misc import SUDOERS
-from SANKIXD.utils.database import (
+from HasiiMusic import app
+from HasiiMusic.misc import SUDOERS
+from HasiiMusic.utils.database import (
     add_private_chat,
     get_private_served_chats,
     is_served_private_chat,
     remove_private_chat,
 )
-from SANKIXD.utils.decorators.language import language
+from HasiiMusic.utils.decorators.language import language
 
 
 @app.on_message(filters.command(["addgr"]) & SUDOERS)
