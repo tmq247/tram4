@@ -10,7 +10,7 @@ from pyrogram.errors import (
 )
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-from config import PLAYLIST_IMG_URL, SUPPORT_CHAT, adminlist
+from config import PLAYLIST_IMG_URL, SUPPORT_CHAT, adminlist, PRIVATE_BOT_MODE
 from strings import get_string
 from HasiiMusic import YouTube, app
 from HasiiMusic.misc import SUDOERS
