@@ -20,9 +20,9 @@ repo_caption = """**
 @app.on_message(filters.command("repo"))
 async def show_repo(_, msg):
     buttons = [
-        [InlineKeyboardButton("➕ ᴀᴅᴅ ᴍᴇ ʙᴀʙʏ ✨", url="https://t.me/HasiiMucisBot?startgroup=true")],
-        [InlineKeyboardButton("🚀 Hosted by", url="https://t.me/Hasindu_Lakshan")],
-        [InlineKeyboardButton("💬 Support", url="https://t.me/Hasindu_Lakshan")]
+        [InlineKeyboardButton("➕ ᴀᴅᴅ ᴍᴇ ʙᴀʙʏ ✨", url="https://t.me/muoimuoiamnhac_Bot?startgroup=true")],
+        [InlineKeyboardButton("🚀 Hosted by", url="https://t.me/muoimuoimusicbot")],
+        [InlineKeyboardButton("💬 Support", url="https://t.me/COIHAYCOC")]
     ]
 
     reply_markup = InlineKeyboardMarkup(buttons)
