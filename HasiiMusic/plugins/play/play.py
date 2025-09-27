@@ -456,7 +456,7 @@ async def play_command(
                 if type(e).__name__ == "AssistantErr"
                 else _["general_2"].format(type(e).__name__)
             )
-            return await mystic.edit_text(err)
+            return await app.send_message(err)
 
         await mystic.delete()
         return await play_logs(message, streamtype=log_label)
