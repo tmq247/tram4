@@ -22,6 +22,7 @@ from HasiiMusic.utils.database import (
     get_playtype,
     is_active_chat,
     is_maintenance,
+    is_served_private_chat,
 )
 from HasiiMusic.utils.inline import botplaylist_markup
 
@@ -39,7 +40,7 @@ def PlayWrapper(command):
                 [
                     [
                         InlineKeyboardButton(
-                            text="ʜᴏᴡ ᴛᴏ ғɪx ?",
+                            text="Cách khắc phục ?",
                             callback_data="AnonymousAdmin",
                         ),
                     ]
@@ -50,9 +51,15 @@ def PlayWrapper(command):
         if await is_maintenance() is False:
             if message.from_user.id not in SUDOERS:
                 return await message.reply_text(
-                    text=f"{app.mention} ɪs ᴜɴᴅᴇʀ ᴍᴀɪɴᴛᴇɴᴀɴᴄᴇ, ᴠɪsɪᴛ <a href={SUPPORT_CHAT}>sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ</a> ғᴏʀ ᴋɴᴏᴡɪɴɢ ᴛʜᴇ ʀᴇᴀsᴏɴ.",
+                    text=f"{app.mention} Đang được bảo trì, hãy truy cập <a href={SUPPORT_CHAT}>hỗ trợ chat</a> để biết lý do.",
                     disable_web_page_preview=True,
                 )
+        if PRIVATE_BOT_MODE:
+            if (message.chat.id != LOGGER_ID and not await is_served_private_chat(message.chat.id)):
+                await message.reply_text(
+                    "**BOT NHẠC TRẢ PHÍ**\n\nChỉ Dành Cho Các Cuộc Trò Chuyện Đã Được Chủ Sở Hữu Cho Phép — Hãy Liên Hệ Chủ Sở Hữu Để Được Phép Dùng Bot Trong Nhóm Của Bạn."
+                )
+                return await app.leave_chat(message.chat.id)
 
         try:
             await message.delete()
@@ -139,7 +146,7 @@ def PlayWrapper(command):
                             [
                                 [
                                     InlineKeyboardButton(
-                                        text="๏ 𝗨ɴʙᴀɴ 𝗔ssɪsᴛᴀɴᴛ ๏",
+                                        text="๏ Gỡ cấm Trợ lý ๏",
                                         callback_data="unban_assistant",
                                     )
                                 ]
