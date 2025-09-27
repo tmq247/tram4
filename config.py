@@ -103,20 +103,21 @@ DURATION_LIMIT = time_to_seconds(f"{DURATION_LIMIT_MIN}:00")
 
 # ───── Bot Introduction Messages ───── #
 AYU = [
-    "▰▱▱▱▱▱▱▱▱ Processing... 💞",
-    "▰▰▱▱▱▱▱▱▱ Searching... 🔍",
-    "▰▰▰▱▱▱▱▱▱ Loading... ⚡",
-    "▰▰▰▰▱▱▱▱▱ Connecting... 🌐",
-    "▰▰▰▰▰▱▱▱▱ Preparing... 🔧",
-    "▰▰▰▰▰▰▱▱▱ Almost Done... ⏳",
-    "▰▰▰▰▰▰▰▱▱ Verifying... 🛡️",
-    "▰▰▰▰▰▰▰▰▱ Starting... 🦋",
+    "▰▱▱▱▱▱▱▱▱ Đang xử lý... 💞",
+    "▰▰▱▱▱▱▱▱▱ Đang tìm kiếm... 🔍",
+    "▰▰▰▱▱▱▱▱▱ Đang tải... ⚡",
+    "▰▰▰▰▱▱▱▱▱ Đang kết nối... 🌐",
+    "▰▰▰▰▰▱▱▱▱ Đang chuẩn bị... 🔧",
+    "▰▰▰▰▰▰▱▱▱ Gần xong... ⏳",
+    "▰▰▰▰▰▰▰▱▱ Đang xác minh... 🛡️",
+    "▰▰▰▰▰▰▰▰▱ Đang bắt đầu... 🦋",
     "💞", "🦋", "🔍", "🧪", "⚡️", "🔥", "🎩", "🌈", "🍷", "🥂", "🥃", "🕊️", "🪄", "💌", "🧨"
 ]
 AYUV = [
-    "ʜᴇʟʟᴏ {0}, 🥀\n\n ɪᴛ'ꜱ ᴍᴇ {1} !\n\n┏━━━━━━━━━━━━━━━━━⧫\n┠ ◆ ꜱᴜᴘᴘᴏʀᴛɪɴɢ ᴘʟᴀᴛꜰᴏʀᴍꜱ : ʏᴏᴜᴛᴜʙᴇ, ꜱᴘᴏᴛɪꜰʏ,\n┠ ◆ ʀᴇꜱꜱᴏ, ᴀᴘᴘʟᴇᴍᴜꜱɪᴄ , ꜱᴏᴜɴᴅᴄʟᴏᴜᴅ ᴇᴛᴄ.\n┗━━━━━━━━━━━━━━━━━⧫\n┏━━━━━━━━━━━━━━━━━⧫\n┠ ➥ Uᴘᴛɪᴍᴇ : {2}\n┠ ➥ SᴇʀᴠᴇʀSᴛᴏʀᴀɢᴇ : {3}\n┠ ➥ CPU Lᴏᴀᴅ : {4}\n┠ ➥ RAM Cᴏɴsᴜᴘᴛɪᴏɴ : {5}\n┠ ➥ ᴜꜱᴇʀꜱ : {6}\n┠ ➥ ᴄʜᴀᴛꜱ : {7}\n┗━━━━━━━━━━━━━━━━━⧫\n\n🫧 ᴅᴇᴠᴇʟᴏᴩᴇʀ 🪽 ➪ [ᴄᴇʀᴛɪғɪᴇᴅ ᴄᴏᴅᴇʀ ✔︎](https://t.me/CertifiedCoder)",
-    "ʜɪɪ, {0} ~\n\n◆ ɪ'ᴍ ᴀ {1} ᴛᴇʟᴇɢʀᴀᴍ ꜱᴛʀᴇᴀᴍɪɴɢ ʙᴏᴛ ᴡɪᴛʜ ꜱᴏᴍᴇ ᴜꜱᴇꜰᴜʟ\n◆ ᴜʟᴛʀᴀ ғᴀsᴛ ᴠᴄ ᴘʟᴀʏᴇʀ ꜰᴇᴀᴛᴜʀᴇꜱ.\n\n✨ ꜰᴇᴀᴛᴜʀᴇꜱ ⚡️\n◆ ʙᴏᴛ ғᴏʀ ᴛᴇʟᴇɢʀᴀᴍ ɢʀᴏᴜᴘs.\n◆ Sᴜᴘᴇʀғᴀsᴛ ʟᴀɢ Fʀᴇᴇ ᴘʟᴀʏᴇʀ.\n◆ ʏᴏᴜ ᴄᴀɴ ᴘʟᴀʏ ᴍᴜꜱɪᴄ + ᴠɪᴅᴇᴏ.\n◆ ʟɪᴠᴇ ꜱᴛʀᴇᴀᴍɪɴɢ.\n◆ ɴᴏ ᴘʀᴏᴍᴏ.\n◆ ʙᴇꜱᴛ ꜱᴏᴜɴᴅ Qᴜᴀʟɪᴛʏ.\n◆ 24×7 ʏᴏᴜ ᴄᴀɴ ᴘʟᴀʏ ᴍᴜꜱɪᴄ.\n◆ ᴀᴅᴅ ᴛʜɪꜱ ʙᴏᴛ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ ᴀɴᴅ ᴍᴀᴋᴇ ɪᴛ ᴀᴅᴍɪɴ ᴀɴᴅ ᴇɴᴊᴏʏ ᴍᴜꜱɪᴄ 🎵.\n\n┏━━━━━━━━━━━━━━━━━⧫\n┠ ◆ ꜱᴜᴘᴘᴏʀᴛɪɴɢ ᴘʟᴀᴛꜰᴏʀᴍꜱ : ʏᴏᴜᴛᴜʙᴇ, ꜱᴘᴏᴛɪꜰʏ,\n┠ ◆ ʀᴇꜱꜱᴏ, ᴀᴘᴘʟᴇᴍᴜꜱɪᴄ , ꜱᴏᴜɴᴅᴄʟᴏᴜᴅ ᴇᴛᴄ.\n┗━━━━━━━━━━━━━━━━━⧫\n┏━━━━━━━━━━━━━━━━━⧫\n┠ ➥ Uᴘᴛɪᴍᴇ : {2}\n┠ ➥ SᴇʀᴠᴇʀSᴛᴏʀᴀɢᴇ : {3}\n┠ ➥ CPU Lᴏᴀᴅ : {4}\n┠ ➥ RAM Cᴏɴsᴜᴘᴛɪᴏɴ : {5}\n┠ ➥ ᴜꜱᴇʀꜱ : {6}\n┠ ➥ ᴄʜᴀᴛꜱ : {7}\n┗━━━━━━━━━━━━━━━━━⧫\n\n🫧 ᴅᴇᴠᴇʟᴏᴩᴇʀ 🪽 ➪ [ᴄᴇʀᴛɪғɪᴇᴅ ᴄᴏᴅᴇʀ ✔︎](https://t.me/CertifiedCoder)",
+    "Xin chào {0}, 🥀\n\n Mình là {1} !\n\n┏━━━━━━━━━━━━━━━━━⧫\n┠ ◆ Hỗ trợ nền tảng : YouTube, Spotify,\n┠ ◆ Resso, AppleMusic, SoundCloud v.v.\n┗━━━━━━━━━━━━━━━━━⧫\n┏━━━━━━━━━━━━━━━━━⧫\n┠ ➥ Thời gian hoạt động : {2}\n┠ ➥ Bộ nhớ máy chủ : {3}\n┠ ➥ Tải CPU : {4}\n┠ ➥ RAM sử dụng : {5}\n┠ ➥ Người dùng : {6}\n┠ ➥ Nhóm/Chat : {7}\n┗━━━━━━━━━━━━━━━━━⧫\n\n🫧 Nhà phát triển 🪽 ➪ [Còi ✔︎](https://t.me/COIHAYCOC)",
+    "Chào bạn, {0} ~\n\n◆ Mình là {1}, một bot phát trực tuyến trên Telegram với nhiều tính năng hữu ích.\n◆ Trình phát VC siêu nhanh.\n\n✨ Tính năng ⚡️\n◆ Bot dành cho nhóm Telegram.\n◆ Trình phát siêu nhanh, không lag.\n◆ Có thể phát nhạc + video.\n◆ Phát trực tiếp.\n◆ Không quảng cáo.\n◆ Chất lượng âm thanh tốt nhất.\n◆ Phát nhạc 24×7.\n◆ Thêm bot này vào nhóm của bạn, cấp quyền admin và thưởng thức âm nhạc 🎵.\n\n┏━━━━━━━━━━━━━━━━━⧫\n┠ ◆ Hỗ trợ nền tảng : YouTube, Spotify,\n┠ ◆ Resso, AppleMusic, SoundCloud v.v.\n┗━━━━━━━━━━━━━━━━━⧫\n┏━━━━━━━━━━━━━━━━━⧫\n┠ ➥ Thời gian hoạt động : {2}\n┠ ➥ Bộ nhớ máy chủ : {3}\n┠ ➥ Tải CPU : {4}\n┠ ➥ RAM sử dụng : {5}\n┠ ➥ Người dùng : {6}\n┠ ➥ Nhóm/Chat : {7}\n┗━━━━━━━━━━━━━━━━━⧫\n\n🫧 Nhà phát triển 🪽 ➪ [Còi ✔︎](https://t.me/COIHAYCOC)",
 ]
+
 
 # ── Runtime structures ─────────────────────────────────────────────────────────
 BANNED_USERS = filters.user()
