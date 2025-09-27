@@ -165,7 +165,7 @@ class Call:
     @capture_internal_err
     async def speedup_stream(self, chat_id: int, file_path: str, speed: float, playing: list) -> None:
         if not isinstance(playing, list) or not playing or not isinstance(playing[0], dict):
-            raise AssistantErr("Invalid stream info for speedup.")
+            raise AssistantErr("Thông tin luồng không hợp lệ cho quá trình tăng tốc.")
 
         assistant = await group_assistant(self, chat_id)
         base = os.path.basename(file_path)
@@ -189,7 +189,7 @@ class Call:
         if chat_id in db and db[chat_id] and db[chat_id][0].get("file") == file_path:
             await assistant.play(chat_id, stream)
         else:
-            raise AssistantErr("Stream mismatch during speedup.")
+            raise AssistantErr("Không khớp luồng trong quá trình tăng tốc.")
 
         db[chat_id][0].update({
             "played": con_seconds,
@@ -236,7 +236,7 @@ class Call:
             raise AssistantErr(_["call_10"])
         except Exception as e:
             raise AssistantErr(
-                f"ᴜɴᴀʙʟᴇ ᴛᴏ ᴊᴏɪɴ ᴛʜᴇ ɢʀᴏᴜᴘ ᴄᴀʟʟ.\nRᴇᴀsᴏɴ: {e}"
+                f"Không thể tham gia cuộc gọi nhóm.\nLý do: {e}"
             )
         self.active_calls.add(chat_id)
         await add_active_chat(chat_id)
@@ -435,7 +435,7 @@ class Call:
                             reply_markup=InlineKeyboardMarkup(button),
                         )
                     except FloodWait as e:
-                        LOGGER(__name__).warning(f"FloodWait: Sleeping for {e.value}")
+                        LOGGER(__name__).warning(f"FloodWait: Đang tạm dừng trong {e.value}")
                         await asyncio.sleep(e.value)
                         run = await app.send_photo(
                             chat_id=original_chat_id,
@@ -510,7 +510,7 @@ class Call:
                 exc_type, exc_obj, exc_tb = sys.exc_info()
                 full_trace = "".join(traceback.format_exception(exc_type, exc_obj, exc_tb))
                 caption = (
-                    f"🚨 <b>Stream Update Error</b>\n"
+                    f"🚨 <b>Lỗi cập nhật luồng</b>\n"
                     f"📍 <b>Update Type:</b> <code>{type(update).__name__}</code>\n"
                     f"📍 <b>Error Type:</b> <code>{exc_type.__name__}</code>"
                 )
