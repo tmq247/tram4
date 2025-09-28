@@ -74,10 +74,22 @@ async def init():
     LOGGER("HasiiMusic").info("sᴛᴏᴘᴘɪɴɢ ʜᴀꜱɪɪ ᴍᴜsɪᴄ ʙᴏᴛ ...")
 
 
-if __name__ == "__main__":
+#if __name__ == "__main__":
     #asyncio.get_event_loop().run_until_complete(init())
+    
+
+async def main():
+    await init()
+    # Nếu bạn dùng Pyrogram's idle để giữ tiến trình:
     try:
-        loop = asyncio.get_running_loop()
-    except RuntimeError:
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
+        from pyrogram import idle
+        await idle()
+    except Exception:
+        # fallback giữ tiến trình nếu không có idle
+        await asyncio.Event().wait()
+
+if __name__ == "__main__":
+    try:
+        asyncio.run(main())
+    except (KeyboardInterrupt, SystemExit):
+        pass
