@@ -85,5 +85,5 @@ unidecode
 wget
 yt-dlp==2025.9.23
 git+https://github.com/CertifiedCoders/youtube-search-python
-#pyrotgfork
+pyrotgfork
 kurigram
