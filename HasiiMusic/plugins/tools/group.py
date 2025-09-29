@@ -27,7 +27,7 @@ async def on_voice_chat_ended(_, message: Message):
     await _safe_reply_text(message, "🔕 **Cuộc trò chuyện thoại đã kết thúc.**")
 
 
-@app.on_message(filters.video_chat_members_invited & filters.group)
+@app.on_message(filters.video_chat_members_invited_filter & filters.group)
 async def on_voice_chat_members_invited(_, message: Message):
     inviter = "Someone"
     if message.from_user:
@@ -37,7 +37,7 @@ async def on_voice_chat_members_invited(_, message: Message):
             inviter = message.from_user.first_name or "Someone"
 
     invited = []
-    vcmi = getattr(message, "video_chat_members_invited", None)
+    vcmi = getattr(message, "video_chat_members_invited_filter", None)
     users = getattr(vcmi, "users", []) if vcmi else []
     for user in users:
         try:
