@@ -206,13 +206,12 @@ class YouTubeAPI:
             link = link.split("&")[0]
         stdout, _ = await _exec_proc(
             "yt-dlp",
-            *(_cookies_args()),
             "-i",
             "--compat-options no-youtube-unavailable-videos",
             "--get-id",
             "--flat-playlist",
             "--playlist-end",
-            limit,
+            str(limit),
             "--skip-download",
             link,
         )
