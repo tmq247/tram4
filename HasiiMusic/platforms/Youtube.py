@@ -202,7 +202,8 @@ class YouTubeAPI:
     ) -> List[str]:
         if videoid:
             link = self.playlist_url + str(videoid)
-        link = link.split("&")[0]
+        if "&" in link:
+            link = link.split("&")[0]
         stdout, _ = await _exec_proc(
             "yt-dlp",
             *(_cookies_args()),
