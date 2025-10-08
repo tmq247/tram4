@@ -222,14 +222,12 @@ class YouTubeAPI:
             link = self.listbase + link
         if "&" in link:
             link = link.split("&")[0]
+            
 
-        cmd = (
-            f"yt-dlp *{_cookies_args()} -i --compat-options no-youtube-unavailable-videos "
-            f'--get-id --flat-playlist --playlist-end {limit} --skip-download "{link}" '
-            f"2>/dev/null"
-        )
-
-        playlist = await _exec_proc(cmd)
+        playlist = await _exec_proc(
+            "yt-dlp *(_cookies_args()) -i --compat-options no-youtube-unavailable-videos "
+            "--get-id --flat-playlist --playlist-end (limit) --skip-download (link) "
+            "2>/dev/null")
 
         try:
             result = [key for key in playlist.split("\n") if key]
