@@ -208,6 +208,7 @@ class YouTubeAPI:
             "yt-dlp",
             *(_cookies_args()),
             "-i",
+            "--compat-options no-youtube-unavailable-videos",
             "--get-id",
             "--flat-playlist",
             "--playlist-end",
@@ -217,23 +218,7 @@ class YouTubeAPI:
         )
         items = stdout.decode().strip().split("\n") if stdout else []
         return [i for i in items if i]
-    async def playlist(self, link, limit, videoid: bool | str = None):
-        if videoid:
-            link = self.listbase + link
-        if "&" in link:
-            link = link.split("&")[0]
-            
-
-        playlist = await _exec_proc(
-            "yt-dlp *(_cookies_args()) -i --compat-options no-youtube-unavailable-videos "
-            "--get-id --flat-playlist --playlist-end (limit) --skip-download (link) "
-            "2>/dev/null")
-
-        try:
-            result = [key for key in playlist.split("\n") if key]
-        except Exception:
-            result = []
-        return result
+    
 
     @capture_internal_err
     async def track(
