@@ -224,7 +224,7 @@ class YouTubeAPI:
             link = link.split("&")[0]
 
         cmd = (
-            f"yt-dlp -i --compat-options no-youtube-unavailable-videos "
+            f"yt-dlp *{_cookies_args()} -i --compat-options no-youtube-unavailable-videos "
             f'--get-id --flat-playlist --playlist-end {limit} --skip-download "{link}" '
             f"2>/dev/null"
         )
