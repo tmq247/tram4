@@ -204,7 +204,7 @@ class YouTubeAPI:
             link = self.playlist_url + str(videoid)
         if "&" in link:
             link = link.split("&")[0]
-        stdout = await _exec_proc(
+        stdout, _ = await _exec_proc(
             "yt-dlp",
             *(_cookies_args()),
             "-i",
@@ -212,7 +212,7 @@ class YouTubeAPI:
             "--get-id",
             "--flat-playlist",
             "--playlist-end",
-            str(limit),
+            limit,
             "--skip-download",
             link,
         )
