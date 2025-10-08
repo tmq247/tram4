@@ -5,6 +5,7 @@ import os
 import re
 import time
 from typing import Dict, List, Optional, Tuple, Union
+from urllib.parse import urlparse, parse_qs
 
 import yt_dlp
 from pyrogram.enums import MessageEntityType
@@ -76,7 +77,6 @@ async def cached_youtube_search(query: str) -> List[Dict]:
         async with _cache_lock:
             _cache[key] = (now, result)
     return result
-
 
 class YouTubeAPI:
     def __init__(self) -> None:
@@ -196,23 +196,55 @@ class YouTubeAPI:
         )
         return (1, stdout.decode().split("\n")[0]) if stdout else (0, stderr.decode())
 
+    # ------------------------------
+    # ✅ Helper mới để xử lý playlist URL
+    # ------------------------------
+    def _normalize_playlist_link(self, link: str, videoid):
+        """Chuẩn hoá URL/ID playlist YouTube để không bị mất tham số list=..."""
+        if isinstance(videoid, str) and videoid.strip():
+            return f"{self.playlist_url}{videoid.strip()}"
+
+        link = (link or "").strip()
+        try:
+            if link.startswith("http"):  # URL có tham số list
+                q = parse_qs(urlparse(link).query)
+                if q.get("list", [""])[0]:
+                    return f"{self.playlist_url}{q['list'][0]}"
+        except Exception:
+            pass
+
+        if "playlist?list=" in link:
+            return link
+
+        if re.fullmatch(r"(PL|UU|LL|RD|OLAK5uy_)?[A-Za-z0-9_-]{10,}", link):
+            return f"{self.playlist_url}{link}"
+
+        return link
+
+    # ------------------------------
+    # ✅ Hàm playlist đã sửa
+    # ------------------------------
     @capture_internal_err
     async def playlist(
         self, link: str, limit: int, user_id, videoid: Union[str, bool, None] = None
     ) -> List[str]:
-        if videoid:
-            link = self.playlist_url + str(videoid)
-        if "&" in link:
-            link = link.split("&")[0]
+        # Chuẩn hoá link để giữ nguyên playlist id
+        link = self._normalize_playlist_link(link, videoid)
+
+        # Giới hạn 'limit' an toàn
+        try:
+            limit = max(1, min(int(limit or 1), 1000))
+        except Exception:
+            limit = 1
+
+        # Gọi yt-dlp: chỉ lấy ID từ playlist, chọn mục bằng -I 1:limit
         stdout, _ = await _exec_proc(
             "yt-dlp",
             *(_cookies_args()),
             "-i",
-            "--get-id",
             "--flat-playlist",
-            "--playlist-end",
-            str(limit),
-            "--skip-download",
+            "-I", f"1:{limit}",
+            "--get-id",
             link,
         )
         items = stdout.decode().strip().split("\n") if stdout else []
