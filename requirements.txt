@@ -43,4 +43,4 @@ wget
 yt-dlp
 #git+https://github.com/CertifiedCoders/youtube-search-python
 pyrotgfork
-py-yt-search==0.3
+py-yt-search #==0.3
