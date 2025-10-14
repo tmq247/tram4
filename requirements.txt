@@ -45,3 +45,5 @@ yt-dlp
 pyrotgfork
 py-yt-search #==0.3
 pyrofork
+youtube-search-python
+youtube-search
