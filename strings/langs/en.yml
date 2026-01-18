@@ -26,6 +26,8 @@ call_7 : "» Đang tải bài tiếp theo từ hàng đợi.\n\nVui lòng đợi
 call_8 : "<b>Không tìm thấy cuộc gọi video đang hoạt động.</b>\n\nVui lòng bắt đầu cuộc gọi video trong nhóm/kênh của bạn rồi thử lại."
 call_9 : "<b>Trợ lý đã trong cuộc gọi video.</b>\n\nNếu trợ lý không ở trong cuộc gọi video, vui lòng gửi <code>/reboot</code> rồi phát lại."
 call_10 : "<b>Lỗi máy chủ Telegram</b>\n\nTelegram đang gặp sự cố nội bộ, vui lòng thử phát lại hoặc khởi động lại cuộc gọi video của nhóm bạn."
+call_11: "<b>ɴᴏ ᴀᴜᴅɪᴏ sᴏᴜʀᴄᴇ ғᴏᴜɴᴅ</b>\nᴛʀʏ ᴘʟᴀʏɪɴɢ ᴀɢᴀɪɴ."
+call_12: "<b>ɴᴏ ᴠɪᴅᴇᴏ sᴏᴜʀᴄᴇ ғᴏᴜɴᴅ</b>\nᴛʀʏ ᴘʟᴀʏɪɴɢ ᴀɢᴀɪɴ."
 
 auth_1 : "» Bạn chỉ có thể có tối đa 25 người dùng được ủy quyền trong nhóm của mình."
 auth_2 : "» Đã thêm {0} vào danh sách người dùng được ủy quyền."
